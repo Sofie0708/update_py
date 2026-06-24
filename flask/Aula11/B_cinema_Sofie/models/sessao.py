@@ -16,3 +16,10 @@ class Sessao(ModeloBase):
     @classmethod
     def listar_com_detalhes(cls):
         return cls.query.order_by(cls.data_hora.desc()).all()
+
+    @classmethod
+    def adicionar(cls, filme_id, sala_id, data_hora, preco):
+        sessao = cls(filme_id=filme_id, sala_id=sala_id, data_hora=data_hora, preco=preco)
+        db.session.add(sessao)
+        db.session.commit()
+        return sessao
